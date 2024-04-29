@@ -1,6 +1,5 @@
 package com.example.serviceusingworkmanager
 
-
 import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
@@ -15,7 +14,6 @@ import android.widget.TimePicker
 
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import java.sql.Time
 
 import java.util.Locale
 
@@ -56,15 +54,16 @@ class MainActivity : AppCompatActivity() {
                 set(Calendar.MINUTE, minute)
                 set(Calendar.SECOND, 0)
                 set(Calendar.MILLISECOND, 0)}
-            val delay = selectedTime.timeInMillis - currentTime.timeInMillis
+            val MusicDelay = selectedTime.timeInMillis - currentTime.timeInMillis
             handler.postDelayed({
                 playSongForFiveSeconds()
-            }, delay)
-            val delay2 = (selectedTime.timeInMillis - currentTime.timeInMillis) - (1 * 60 * 1000)
+            }, MusicDelay)
+            val reminderDelay = (selectedTime.timeInMillis - currentTime.timeInMillis) - (2 * 60 * 1000)
+//            val delay2 = 1000 *10
             handler.postDelayed({
-                Log.i("mytag","enter handler")
+                Log.i("mytag","Reminder delayed: $reminderDelay and Music Delayed $MusicDelay")
                 startService(Intent(this, TextToSpeechService::class.java))
-            }, delay2)
+            }, reminderDelay)
         }
 
     }
