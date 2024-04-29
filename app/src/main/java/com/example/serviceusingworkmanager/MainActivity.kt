@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
             handler.postDelayed({
                 playSongForFiveSeconds()
             }, delay)
-            val delay2 = (selectedTime.timeInMillis - currentTime.timeInMillis) - (1 * 60 * 1000)
+            val delay2 = (selectedTime.timeInMillis - currentTime.timeInMillis) - (10 * 60 * 1000)
             handler.postDelayed({
                 Log.i("mytag","enter handler")
                 startService(Intent(this, TextToSpeechService::class.java))
