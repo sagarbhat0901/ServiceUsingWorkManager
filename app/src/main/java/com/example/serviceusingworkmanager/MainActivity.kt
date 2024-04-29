@@ -43,7 +43,6 @@ class MainActivity : AppCompatActivity() {
 
 
         getTimeButton.setOnClickListener {
-
             val hour = timePicker.hour
             val minute = timePicker.minute
 
@@ -57,18 +56,15 @@ class MainActivity : AppCompatActivity() {
                 set(Calendar.MINUTE, minute)
                 set(Calendar.SECOND, 0)
                 set(Calendar.MILLISECOND, 0)}
-
-            val delay2 = selectedTime.timeInMillis - currentTime.timeInMillis - 10 * 60 * 1000
-            handler.postDelayed({
-                Log.i("mytag","enter handler")
-                startService(Intent(this, TextToSpeechService::class.java))
-            }, delay2)
-
-
             val delay = selectedTime.timeInMillis - currentTime.timeInMillis
             handler.postDelayed({
                 playSongForFiveSeconds()
             }, delay)
+            val delay2 = (selectedTime.timeInMillis - currentTime.timeInMillis) - (1 * 60 * 1000)
+            handler.postDelayed({
+                Log.i("mytag","enter handler")
+                startService(Intent(this, TextToSpeechService::class.java))
+            }, delay2)
         }
 
     }
